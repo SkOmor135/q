@@ -1,5 +1,5 @@
 // global variable declaration
-let count = 5;
+let count = 0;
 let timer;
 let quizData;
 let answers = [];
@@ -17,22 +17,22 @@ let displayResult = document.querySelector("#displayResult");
 startQuiz.addEventListener("click", () => {
   let countDown = document.querySelector("#countDownContainer");
   let counter = document.querySelector("#counter");
-  let counterNum = 3;
+  let counterNum = 4;
   countDown.classList.remove("hidden");
   countDown.classList.add("flex");
 
   let x = setInterval(() => {
     if (counterNum < 0) {
       coutDown.classList.remove("flex");
-      coutDown.classList.add("hidden");
+      coutDown.classList.add("flex");
       counterNum = 5;
       count = 0;
       timer = null;
       quizData = null;
       answers = [];
-      rulesContainer.classList.add("flex");
-      alertContainer.classList.remove("flex");
-      submitContainer.classList.remove("flex");
+      rulesContainer.classList.add("hidden");
+      alertContainer.classList.remove("hidden");
+      submitContainer.classList.remove("hidden");
       submitContainer.classList.add("flex");
       loadQuiz();
       quizTimer();
@@ -78,7 +78,7 @@ document.querySelector("#submit").addEventlistener("click", () => {
   if (answers.length < 6) {
     return;
   }
-
+  quizTimer(true);
   answersContainer.innerHTML = `<div class="my-4">
   <i class="fa-solid fa-fan animate-spin text-2xl text-green-600"></i>
   <p class="text-xs animate-pulse">Please Wait, We are checking...</p>
